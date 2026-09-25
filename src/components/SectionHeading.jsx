@@ -22,7 +22,9 @@ export default function SectionHeading({
   theme = "dark", // 'dark' | 'light'
   scaleColor = "red", // 'red' | 'white'
   useWordReveal = true,
-  className = ""
+  className = "",
+  titleClassName = "",
+  descriptionClassName = "",
 }) {
   // Clean tag string by removing leading slashes
   const cleanTag = typeof tag === 'string' ? tag.replace(/^\/\/\s*/, '') : tag;
@@ -48,7 +50,7 @@ export default function SectionHeading({
       <h2
         className={`text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-[0.03em] uppercase leading-[1.15] text-brand-heading ${
           centered ? 'text-center' : ''
-        }`}
+        } ${titleClassName}`}
       >
         <span>{title} </span>
         {highlight && (
@@ -61,19 +63,21 @@ export default function SectionHeading({
       {/* Description with Scroll Text Reveal Effect */}
       {description && (
         <div className="mt-2.5 sm:mt-3">
-          {useWordReveal ? (
+          {typeof description === 'string' && useWordReveal ? (
             <ScrollWordReveal
               text={description}
               colorRevealed="#A8A8A0"
               colorHidden="rgba(168, 168, 160, 0.25)"
               className={`text-sm sm:text-base leading-relaxed font-sans text-brand-subtext ${
                 centered ? 'justify-center text-center' : ''
-              }`}
+              } ${descriptionClassName}`}
             />
           ) : (
-            <p className="text-sm sm:text-base leading-relaxed font-sans text-brand-subtext">
+            <div className={`text-sm sm:text-base leading-relaxed font-sans text-[#A8A8A0] ${
+              centered ? 'justify-center text-center' : ''
+            } ${descriptionClassName}`}>
               {description}
-            </p>
+            </div>
           )}
         </div>
       )}

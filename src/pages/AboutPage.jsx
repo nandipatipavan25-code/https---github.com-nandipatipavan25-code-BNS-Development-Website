@@ -80,8 +80,8 @@ export default function AboutPage({ setActivePage }) {
         <section className="mb-14 sm:mb-20">
           <SectionHeading
             tag="ABOUT BNS DEVELOPMENT"
-            title="Built on Experience."
-            highlight="Built on Relationships."
+            title={<span className="block">Built on Experience.</span>}
+            highlight={<span className="block">Built on Relationships.</span>}
             description="At BNS Development, we believe successful projects begin with the right people, the right conversations and a clear understanding of what needs to be accomplished. Our team brings decades of experience across construction, development, project management, general contracting and business development. That experience allows us to look at a project from more than one perspective and help clients make informed decisions as the project moves forward."
             theme="dark"
             scaleColor="red"
@@ -117,8 +117,8 @@ export default function AboutPage({ setActivePage }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             tag="PRACTICAL FOUNDATION"
-            title="The Experience Behind"
-            highlight="BNS Development."
+            title={<span className="block">The Experience Behind</span>}
+            highlight={<span className="block">BNS Development.</span>}
             description="BNS Development's foundation is rooted in hands-on construction and development experience. Together with the broader BNS team, this experience creates a practical foundation for helping clients move projects from opportunity to execution."
             theme="dark"
             scaleColor="red"
@@ -192,8 +192,8 @@ export default function AboutPage({ setActivePage }) {
             <div className="relative z-10 max-w-4xl space-y-6">
               <SectionHeading
                 tag="COLLABORATIVE EXCELLENCE"
-                title="More Than a Contractor."
-                highlight="A Project Partner."
+                title={<span className="block">More Than a Contractor.</span>}
+                highlight={<span className="block">A Project Partner.</span>}
                 theme="dark"
                 scaleColor="red"
               />
@@ -213,24 +213,6 @@ export default function AboutPage({ setActivePage }) {
                   delay={0.28}
                   className="text-brand-subtext"
                 />
-              </div>
-
-              {/* 4 Partner Highlights */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/10">
-                {[
-                  'Early Involvement',
-                  'Open Communication',
-                  'Practical Problem Solving',
-                  'Project Accountability',
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 text-center font-mono text-[11px] sm:text-xs text-[#D4D4D0] uppercase tracking-wider font-semibold"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-red inline-block mr-2" />
-                    {item}
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -295,12 +277,15 @@ export default function AboutPage({ setActivePage }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-24">
         <SectionHeading
           tag="PORTFOLIO EXPERTISE"
-          title="Experience Across"
-          highlight="Project Types."
+          title={<span className="whitespace-nowrap">Experience Across</span>}
+          highlight={<span className="whitespace-nowrap">Project Types.</span>}
           description="Our team's documented experience spans a diverse range of construction environments across Florida and Texas:"
           theme="dark"
           centered={true}
           scaleColor="red"
+          className="!max-w-5xl"
+          titleClassName="md:whitespace-nowrap"
+          descriptionClassName="md:whitespace-nowrap text-center"
         />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mt-12">
@@ -335,7 +320,7 @@ export default function AboutPage({ setActivePage }) {
           <SectionHeading
             tag="EXECUTIVE LEADERSHIP"
             title="The People Behind"
-            highlight="BNS Development."
+            highlight={<span className="whitespace-nowrap">BNS Development.</span>}
             description="Our leadership team brings decades of verified excellence across general contracting, owner's representation, land development, and strategic capital allocation."
             theme="dark"
             scaleColor="red"

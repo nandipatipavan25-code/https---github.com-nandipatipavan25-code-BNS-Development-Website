@@ -23,6 +23,8 @@ export default function ConstructionBackground({
     const video = videoRef.current;
     if (!video || !showVideo) return;
 
+    let isMounted = true;
+
     // Strict DOM properties for reliable autoplay & continuous looping
     video.muted = true;
     video.defaultMuted = true;
@@ -33,80 +35,77 @@ export default function ConstructionBackground({
     video.setAttribute('webkit-playsinline', 'true');
     video.setAttribute('loop', '');
 
-    const playVideo = () => {
-      if (!video) return;
+    const safePlay = () => {
+      if (!video || !isMounted) return;
       video.muted = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // If browser prevented unmuted autoplay or paused, resume on first user interaction
-          const resumeOnInteraction = () => {
-            if (video && video.paused) {
-              video.muted = true;
-              video.play().catch(() => {});
-            }
-          };
-          window.addEventListener('click', resumeOnInteraction, { once: true, passive: true });
-          window.addEventListener('touchstart', resumeOnInteraction, { once: true, passive: true });
-          window.addEventListener('scroll', resumeOnInteraction, { once: true, passive: true });
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // If browser initially blocks, retry on any user interaction
         });
       }
     };
 
-    if (video.readyState >= 2) {
-      playVideo();
+    // Ensure immediate playback if already loaded
+    if (video.readyState >= 1) {
+      safePlay();
     } else {
-      video.addEventListener('loadeddata', playVideo, { once: true });
-      video.addEventListener('canplay', playVideo, { once: true });
+      video.load();
+      video.addEventListener('loadedmetadata', safePlay, { once: true });
+      video.addEventListener('canplay', safePlay, { once: true });
     }
 
-    // Seamless continuous loop handler: rewinds before freeze and plays seamlessly
-    const handleTimeUpdate = () => {
-      if (video && video.duration > 0) {
-        // When within 150ms of the end, seamlessly loop back to start to prevent freeze frame
-        if (video.currentTime >= video.duration - 0.15) {
-          video.currentTime = 0;
-          if (video.paused) {
-            playVideo();
-          }
-        }
+    // Interaction fallback listeners
+    const handleInteraction = () => {
+      if (video && video.paused) {
+        safePlay();
       }
     };
+    window.addEventListener('click', handleInteraction, { passive: true });
+    window.addEventListener('touchstart', handleInteraction, { passive: true });
+    window.addEventListener('scroll', handleInteraction, { passive: true });
+    window.addEventListener('keydown', handleInteraction, { passive: true });
 
-    // Hard loop fallback: whenever ended event fires, rewind to 0 and play immediately
+    // Loop fallback: ensure video loops seamlessly back to start
     const handleEnded = () => {
-      if (video) {
+      if (video && isMounted) {
         video.currentTime = 0;
-        playVideo();
+        safePlay();
       }
     };
 
-    // Auto-resume if accidentally paused or interrupted at any point
+    // If browser auto-pauses when scrolling or backgrounding, resume immediately
     const handlePause = () => {
-      if (showVideo && video) {
-        playVideo();
+      if (isMounted && showVideo && video && video.paused) {
+        safePlay();
       }
     };
 
     // Auto-resume when tab becomes visible or receives focus
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible' && showVideo && video) {
-        playVideo();
+      if (document.visibilityState === 'visible' && isMounted && video) {
+        safePlay();
       }
     };
 
-    video.addEventListener('timeupdate', handleTimeUpdate);
     video.addEventListener('ended', handleEnded);
     video.addEventListener('pause', handlePause);
     document.addEventListener('visibilitychange', handleVisibility);
-    window.addEventListener('focus', playVideo);
+    window.addEventListener('focus', safePlay);
+
+    // Initial kickstart
+    safePlay();
 
     return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
+      isMounted = false;
       video.removeEventListener('ended', handleEnded);
       video.removeEventListener('pause', handlePause);
       document.removeEventListener('visibilitychange', handleVisibility);
-      window.removeEventListener('focus', playVideo);
+      window.removeEventListener('focus', safePlay);
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
     };
   }, [showVideo, videoSrc]);
 

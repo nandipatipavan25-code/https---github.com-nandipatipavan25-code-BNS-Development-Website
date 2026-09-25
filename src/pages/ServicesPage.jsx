@@ -136,7 +136,7 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
                 <span>COMPREHENSIVE SERVICES CATALOGUE</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[42px] font-display font-semibold tracking-tight uppercase leading-[1.12] text-brand-heading">
+              <h1 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[42px] font-display font-semibold tracking-tight uppercase leading-tight sm:leading-snug md:leading-normal lg:leading-[42px] text-brand-heading">
                 Precision Disciplines.<br />
                 <span className="text-brand-red">
                   Built for Complexity.

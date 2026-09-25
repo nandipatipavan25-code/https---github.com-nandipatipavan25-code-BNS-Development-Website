@@ -625,10 +625,6 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
                       {pillar.desc}
                     </p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-500 uppercase tracking-wider">
-                    <span>COMMITMENT</span>
-                    <span className="text-brand-red">DISCIPLINE</span>
-                  </div>
                 </div>
               </ScrollReveal>
             ))}

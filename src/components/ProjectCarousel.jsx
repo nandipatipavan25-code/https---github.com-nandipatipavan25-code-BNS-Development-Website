@@ -141,10 +141,10 @@ export default function ProjectCarousel({ onSelectProject, onViewAll }) {
           {/* Title + Nav row */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 sm:pb-10">
             <div className="max-w-3xl">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-display font-semibold tracking-tight leading-[1.12]">
-                <span className="text-[#E6E6E6]">Experience You Can See </span>
-                <span className="text-brand-red font-semibold">
-                  in the Work.
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-[0.03em] uppercase leading-[1.15]">
+                <span className="text-[#E6E6E6] block">EXPERIENCE YOU CAN SEE</span>
+                <span className="text-brand-red font-semibold block">
+                  IN THE WORK.
                 </span>
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-[#A8A8A0] leading-relaxed font-sans">

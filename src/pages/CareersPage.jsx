@@ -117,8 +117,8 @@ export default function CareersPage({ setActivePage, setSelectedJob: setSelected
         <section className="space-y-6">
           <SectionHeading
             tag="CAREERS & CULTURE"
-            title="Build Structures."
-            highlight="Elevate Your Career."
+            title={<span className="block">Build Structures.</span>}
+            highlight={<span className="block">Elevate Your Career.</span>}
             description="At BNS Development, we hold ourselves to the standard of 'Build It Right'. We are seeking ambitious Project Managers, Superintendents, and Estimators who take immense pride in precision craftsmanship and collaborative growth across Florida and Texas."
             theme="dark"
             scaleColor="red"
@@ -184,11 +184,13 @@ export default function CareersPage({ setActivePage, setSelectedJob: setSelected
           <ScrollReveal direction="up" delay={0.06}>
             <SectionHeading
               tag="THE BNS STANDARD"
-              title="Why Premier Builders"
-              highlight="Choose BNS."
+              title={<span className="whitespace-nowrap">Why Premier Builders</span>}
+              highlight={<span className="whitespace-nowrap">Choose BNS.</span>}
               description="We provide the resources, backing, and executive autonomy necessary for elite builders to perform at their highest caliber."
               theme="dark"
               scaleColor="red"
+              className="!max-w-5xl"
+              titleClassName="md:whitespace-nowrap"
             />
           </ScrollReveal>
 

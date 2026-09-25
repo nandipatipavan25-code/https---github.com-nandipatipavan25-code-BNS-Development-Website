@@ -63,10 +63,10 @@ export default function HouseCTA({ onStartProject }) {
             </div>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading tracking-tight leading-[1.12] max-w-4xl mx-auto">
-              Ready to Talk About{' '}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading tracking-[0.03em] uppercase leading-[1.15] max-w-4xl mx-auto">
+              READY TO TALK ABOUT{' '}
               <span className="text-brand-red">
-                Your Project?
+                YOUR PROJECT?
               </span>
             </h2>
 

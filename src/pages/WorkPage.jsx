@@ -44,11 +44,17 @@ export default function WorkPage({ setSelectedProject, setActivePage }) {
         <section className="mb-10">
           <SectionHeading
             tag="PORTFOLIO &amp; ARCHITECTURAL ARCHIVE"
-            title="Our Work &amp; Landmark Builds."
-            highlight="35+ Years Delivered."
-            description="Explore our curated catalogue of completed, active, and upcoming developments across Florida and Central Texas. Over $800M in delivered capital volume built with uncompromising structural discipline."
+            title={<span className="block">Our Work &amp; Landmark Builds.</span>}
+            highlight={<span className="block">35+ Years Delivered.</span>}
+            description={
+              <>
+                <span className="block">Explore our curated catalogue of completed, active, and upcoming developments across Florida and Central Texas.</span>
+                <span className="block mt-0.5">Over $800M in delivered capital volume built with uncompromising structural discipline.</span>
+              </>
+            }
             theme="dark"
             scaleColor="red"
+            className="!max-w-4xl"
           />
 
           {/* Interactive Filter Matrix in Dark Glassmorphism */}
