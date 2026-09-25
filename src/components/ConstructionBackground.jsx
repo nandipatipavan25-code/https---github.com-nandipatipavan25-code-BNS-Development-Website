@@ -55,16 +55,19 @@ export default function ConstructionBackground({
       video.addEventListener('canplay', safePlay, { once: true });
     }
 
-    // Interaction fallback listeners
-    const handleInteraction = () => {
-      if (video && video.paused) {
+    // Interaction and scroll fallback listeners to guarantee continuous playback
+    const ensurePlaying = () => {
+      if (!isMounted || !video) return;
+      if (video.paused) {
         safePlay();
       }
     };
-    window.addEventListener('click', handleInteraction, { passive: true });
-    window.addEventListener('touchstart', handleInteraction, { passive: true });
-    window.addEventListener('scroll', handleInteraction, { passive: true });
-    window.addEventListener('keydown', handleInteraction, { passive: true });
+
+    window.addEventListener('click', ensurePlaying, { passive: true });
+    window.addEventListener('touchstart', ensurePlaying, { passive: true });
+    window.addEventListener('scroll', ensurePlaying, { passive: true });
+    window.addEventListener('keydown', ensurePlaying, { passive: true });
+    window.addEventListener('wheel', ensurePlaying, { passive: true });
 
     // Loop fallback: ensure video loops seamlessly back to start
     const handleEnded = () => {
@@ -74,7 +77,7 @@ export default function ConstructionBackground({
       }
     };
 
-    // If browser auto-pauses when scrolling or backgrounding, resume immediately
+    // If browser auto-pauses when scrolling out of view or tab backgrounding, resume immediately
     const handlePause = () => {
       if (isMounted && showVideo && video && video.paused) {
         safePlay();
@@ -93,19 +96,28 @@ export default function ConstructionBackground({
     document.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('focus', safePlay);
 
+    // Continuous playback heartbeat: checks every 500ms to instantly resume if browser paused it
+    const heartbeatTimer = setInterval(() => {
+      if (isMounted && showVideo && video && video.paused) {
+        safePlay();
+      }
+    }, 500);
+
     // Initial kickstart
     safePlay();
 
     return () => {
       isMounted = false;
+      clearInterval(heartbeatTimer);
       video.removeEventListener('ended', handleEnded);
       video.removeEventListener('pause', handlePause);
       document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('focus', safePlay);
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
+      window.removeEventListener('click', ensurePlaying);
+      window.removeEventListener('touchstart', ensurePlaying);
+      window.removeEventListener('scroll', ensurePlaying);
+      window.removeEventListener('keydown', ensurePlaying);
+      window.removeEventListener('wheel', ensurePlaying);
     };
   }, [showVideo, videoSrc]);
 

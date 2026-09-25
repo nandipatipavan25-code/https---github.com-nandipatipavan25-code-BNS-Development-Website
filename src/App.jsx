@@ -57,13 +57,30 @@ export default function App() {
       window.location.pathname.endsWith('index.html') ||
       window.location.pathname === '/' ||
       !window.location.pathname.includes('.html');
+
     const targetUrl = isSinglePage
-      ? (page === 'home' ? (window.location.pathname) : `#${page}${extraQuery ? `?${extraQuery}` : ''}`)
-      : (page === 'home' ? '/' : `/${page}.html${extraQuery ? `?${extraQuery}` : ''}`);
+      ? `#${page}${extraQuery ? `?${extraQuery}` : ''}`
+      : `/${page}.html${extraQuery ? `?${extraQuery}` : ''}`;
+
     if (window.location.hash !== targetUrl && window.location.pathname !== targetUrl) {
       window.history.pushState({ page }, '', targetUrl);
     }
   };
+
+  // Sync initial URL to #home if opened at root without hash
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isSinglePage =
+        window.location.protocol === 'file:' ||
+        window.location.pathname.endsWith('index.html') ||
+        window.location.pathname === '/' ||
+        !window.location.pathname.includes('.html');
+
+      if (isSinglePage && (!window.location.hash || window.location.hash === '#' || window.location.hash === '#/')) {
+        window.history.replaceState({ page: 'home' }, '', '#home');
+      }
+    }
+  }, []);
 
   // Handle browser Back / Forward buttons and Hash changes
   React.useEffect(() => {
