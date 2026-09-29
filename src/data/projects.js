@@ -247,9 +247,9 @@ export const projectsData = [
     year: "2016",
     sqft: "580,000 SF",
     client: "Miami-Dade Aviation Department",
-    image: "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=85",
+    image: "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1600&q=85",
     gallery: [
-      "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80"
     ],
     overview: "Award-winning mega-infrastructure project expanding MIA's North Terminal. Scope included the final two widebody commercial airliner gates, 14 regional commuter gates, interior fit-outs, and Terminal D connection to the Satellite E Automated People Mover system. Won ENR Southeast Merit Award and COAA Gold Award.",

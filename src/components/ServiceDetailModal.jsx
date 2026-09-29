@@ -60,7 +60,7 @@ export default function ServiceDetailModal({ service, onClose, onContactClick })
               <span className="text-brand-red font-mono text-xs tracking-widest uppercase">
                 DISCIPLINE {service.number}
               </span>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-semibold text-brand-heading tracking-tight mt-1 uppercase">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-semibold text-brand-heading tracking-tight mt-1">
                 {service.title}
               </h1>
               <p className="mt-2 text-base sm:text-lg text-brand-subtext font-sans">
@@ -82,7 +82,7 @@ export default function ServiceDetailModal({ service, onClose, onContactClick })
 
             {/* Overview */}
             <div className="space-y-3">
-              <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2 uppercase">
+              <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2">
                 <span className="w-1.5 h-4 bg-brand-red rounded-full" />
                 Service Overview & Standard of Care
               </h3>
@@ -94,7 +94,7 @@ export default function ServiceDetailModal({ service, onClose, onContactClick })
             {/* Subdisciplines */}
             {service.subdisciplines && service.subdisciplines.length > 0 && (
               <div className="space-y-4">
-                <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2 uppercase">
+                <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2">
                   <span className="w-1.5 h-4 bg-brand-red rounded-full" />
                   Key Subdisciplines & Capabilities
                 </h3>
@@ -120,7 +120,7 @@ export default function ServiceDetailModal({ service, onClose, onContactClick })
             {/* Deliverables Checklist */}
             {service.deliverables && service.deliverables.length > 0 && (
               <div className="space-y-4">
-                <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2 uppercase">
+                <h3 className="text-lg sm:text-xl font-semibold font-display text-brand-subheading tracking-tight flex items-center gap-2">
                   <span className="w-1.5 h-4 bg-brand-red rounded-full" />
                   Concrete Deliverables Provided
                 </h3>
@@ -141,7 +141,7 @@ export default function ServiceDetailModal({ service, onClose, onContactClick })
             {/* Action Card */}
             <div className="pt-6 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-black/40 p-6 rounded-2xl">
               <div>
-                <h4 className="text-base font-semibold text-brand-heading font-display uppercase">
+                <h4 className="text-base font-semibold text-brand-heading font-display">
                   Engage BNS for {service.title}
                 </h4>
                 <p className="text-xs sm:text-sm text-brand-body font-sans">

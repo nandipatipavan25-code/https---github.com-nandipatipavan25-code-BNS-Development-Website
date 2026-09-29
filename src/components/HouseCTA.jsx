@@ -33,7 +33,7 @@ export default function HouseCTA({ onStartProject }) {
           <div className="absolute inset-0 z-0 overflow-hidden bg-[#07080A]">
             <video
               ref={videoRef}
-              src="/videos/CTA%20Background.mp4"
+              src="/videos/cta-bg.mp4"
               autoPlay
               loop
               muted
@@ -47,8 +47,8 @@ export default function HouseCTA({ onStartProject }) {
                 e.currentTarget.play().catch(() => {});
               }}
             >
-              <source src="/videos/CTA%20Background.mp4" type="video/mp4" />
               <source src="/videos/cta-bg.mp4" type="video/mp4" />
+              <source src="/videos/CTA%20Background.mp4" type="video/mp4" />
             </video>
             {/* Softened black vignette for maximum video clarity */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#07080A]/60 via-black/25 to-[#07080A]/60 pointer-events-none" />
@@ -63,10 +63,10 @@ export default function HouseCTA({ onStartProject }) {
             </div>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading tracking-[0.03em] uppercase leading-[1.15] max-w-4xl mx-auto">
-              READY TO TALK ABOUT{' '}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading tracking-tight leading-[1.15] max-w-4xl mx-auto">
+              Ready to Talk About{' '}
               <span className="text-brand-red">
-                YOUR PROJECT?
+                Your Project?
               </span>
             </h2>
 

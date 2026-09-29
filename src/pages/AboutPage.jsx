@@ -12,7 +12,37 @@ import ScrollReveal from '../components/ScrollReveal';
 import PremiumGlassButton from '../components/PremiumGlassButton';
 import HouseCTA from '../components/HouseCTA';
 
-export default function AboutPage({ setActivePage }) {
+export default function AboutPage({ setActivePage, fontPreset = 1 }) {
+  const activePreset = Number(fontPreset) || 1;
+
+  // Typography Study Presets Metadata (Zero Manrope, Pure Luxury Serif Systems)
+  const presetConfig = {
+    1: {
+      name: "Architectural Monograph",
+      heading: "GT Super Display (Serif)",
+      body: "Satoshi (Modern Geometric Sans)",
+      mono: "Space Mono",
+      tagline: "High-fashion architectural monograph style with razor-sharp geometric sans. Zero Manrope.",
+      features: "Serif Display • Clean Grotesk Body • Architectural CAD Monospace",
+    },
+    2: {
+      name: "Bespoke Heritage & Editorial",
+      heading: "Cormorant Garamond (Editorial Luxury Serif)",
+      body: "Spectral (Parisian Stylish Serif Body)",
+      mono: "IBM Plex Mono",
+      tagline: "High-fashion luxury serif display paired with crisp Parisian serif body text (Spectral).",
+      features: "Serif Display • Stylish Serif Body (Spectral) • Industrial Monospace",
+    },
+    3: {
+      name: "Monumental Roman",
+      heading: "Cinzel (Travertine Stone Roman Serif)",
+      body: "Plus Jakarta Sans (Contemporary Architectural Sans)",
+      mono: "DM Mono",
+      tagline: "Chiseled Roman stone-cut monumental serif paired with warm contemporary sans. Zero Manrope.",
+      features: "Roman Monumental Display • Contemporary Warm Sans • Geometric Monospace",
+    },
+  };
+
   // 5 Operational Pillars ("How We Work")
   const workflowPillars = [
     {
@@ -72,7 +102,60 @@ export default function AboutPage({ setActivePage }) {
   ];
 
   return (
-    <div className="relative pt-24 sm:pt-32 pb-24 text-white min-h-screen">
+    <div className={`relative pt-24 sm:pt-32 pb-24 text-white min-h-screen font-preset-${activePreset}`}>
+      {/* ========================================================
+          FONT SELECTION COMPARISON BAR (About us -1 / -2 / -3)
+          ======================================================== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mb-8 sm:mb-12">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.04] border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-300">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                <span className="text-[11px] font-mono tracking-widest text-brand-red uppercase font-bold">
+                  TYPOGRAPHY SPECIFICATION STUDY
+                </span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-brand-subheading border border-white/10">
+                  Active View: About us -{activePreset}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 flex-wrap text-sm sm:text-base">
+                <span className="text-white font-bold">{presetConfig[activePreset].name}</span>
+                <span className="text-white/40 hidden sm:inline">—</span>
+                <span className="text-xs sm:text-sm text-brand-body">{presetConfig[activePreset].tagline}</span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono text-white/50 pt-0.5">
+                <span>Display: <span className="text-brand-heading font-semibold underline decoration-brand-red/50">{presetConfig[activePreset].heading}</span></span>
+                <span>•</span>
+                <span>Body: <span className="text-brand-heading font-semibold underline decoration-white/30">{presetConfig[activePreset].body}</span></span>
+                <span>•</span>
+                <span>Data/Tags: <span className="text-brand-heading font-semibold">{presetConfig[activePreset].mono}</span></span>
+              </div>
+            </div>
+
+            {/* Direct Switcher Links */}
+            <div className="flex items-center gap-2 shrink-0 bg-black/50 p-1.5 rounded-xl border border-white/10">
+              {[1, 2, 3].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => setActivePage(`about-${num}`)}
+                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                    activePreset === num
+                      ? 'bg-brand-red text-white shadow-[0_0_16px_rgba(215,25,32,0.4)]'
+                      : 'text-white/60 hover:text-white hover:bg-white/[0.08]'
+                  }`}
+                >
+                  About us -{num}
+                </button>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
       {/* ========================================================
           1. HERO — Built on Experience. Built on Relationships.
           ======================================================== */}
@@ -151,28 +234,28 @@ export default function AboutPage({ setActivePage }) {
               </div>
             </ScrollReveal>
 
-            {/* Manizha Buribekova Card */}
+            {/* Aravind Vangala Card */}
             <ScrollReveal delay={0.16} direction="up">
               <div className="p-7 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-brand-red/40 backdrop-blur-xl shadow-xl flex flex-col justify-between h-full transition-all duration-300 group hover:-translate-y-1 hover-beam-card">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold text-brand-red uppercase tracking-wider">
-                      BUSINESS DEVELOPMENT
+                      MANAGING PARTNER
                     </span>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-brand-subheading">
-                      MBA
+                      CO-FOUNDER
                     </span>
                   </div>
                   <h3 className="text-xl font-semibold font-display text-brand-subheading group-hover:text-brand-red transition-colors">
-                    Manizha Buribekova
+                    Aravind Vangala
                   </h3>
                   <p className="text-xs sm:text-sm text-brand-body leading-relaxed font-sans">
-                    Brings experience across commercial real estate, hospitality, land development and general contracting. She began her career in 2018 as co-founder of Roepnack Corporation alongside Bradford Smith and later helped establish BNS Development, expanding into North Florida with a focus on land development and rural-area projects.
+                    Accomplished entrepreneur, investor, and business visionary with extensive experience building and scaling multi-million dollar enterprises across real estate, engineering, and technology. As Managing Partner at BNS Development and CEO of PhiDimensions Inc., Aravind guides strategic capital deployment, joint-venture partnerships, and organizational modernization.
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/60">
-                  <span className="text-brand-red font-semibold">Market Growth</span>
-                  <span>Strategic Expansion</span>
+                  <span className="text-brand-red font-semibold">Strategic Capital</span>
+                  <span>Dallas &amp; Austin Operations</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -181,7 +264,27 @@ export default function AboutPage({ setActivePage }) {
       </section>
 
       {/* ========================================================
-          3. MORE THAN A CONTRACTOR. A PROJECT PARTNER.
+          3. THE PEOPLE BEHIND BNS DEVELOPMENT (Vertical List Form)
+          ======================================================== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20">
+        <section>
+          <SectionHeading
+            tag="EXECUTIVE LEADERSHIP"
+            title="The People Behind"
+            highlight={<span className="whitespace-nowrap">BNS Development.</span>}
+            description="Our leadership team brings decades of verified excellence across general contracting, owner's representation, land development, and strategic capital allocation."
+            theme="dark"
+            scaleColor="red"
+          />
+
+          <div className="mt-10">
+            <TeamBioTabs onContactClick={() => setActivePage('contact')} />
+          </div>
+        </section>
+      </div>
+
+      {/* ========================================================
+          4. MORE THAN A CONTRACTOR. A PROJECT PARTNER.
           ======================================================== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-24">
         <ScrollReveal direction="up" delay={0.08}>
@@ -220,7 +323,7 @@ export default function AboutPage({ setActivePage }) {
       </div>
 
       {/* ========================================================
-          4. HOW WE WORK (5 Operational Pillars)
+          5. HOW WE WORK (5 Operational Pillars)
           ======================================================== */}
       <section className="relative w-full py-16 sm:py-24 overflow-hidden bg-white/[0.02] backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -272,7 +375,7 @@ export default function AboutPage({ setActivePage }) {
       </section>
 
       {/* ========================================================
-          5. EXPERIENCE ACROSS PROJECT TYPES (12 Sectors)
+          6. EXPERIENCE ACROSS PROJECT TYPES (12 Sectors)
           ======================================================== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-24">
         <SectionHeading
@@ -312,25 +415,7 @@ export default function AboutPage({ setActivePage }) {
         </div>
       </div>
 
-      {/* ========================================================
-          6. LEADERSHIP (Interactive Bio Tabs with Source-of-Truth Copy)
-          ======================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <section className="mb-16 sm:mb-24">
-          <SectionHeading
-            tag="EXECUTIVE LEADERSHIP"
-            title="The People Behind"
-            highlight={<span className="whitespace-nowrap">BNS Development.</span>}
-            description="Our leadership team brings decades of verified excellence across general contracting, owner's representation, land development, and strategic capital allocation."
-            theme="dark"
-            scaleColor="red"
-          />
 
-          <div className="mt-8">
-            <TeamBioTabs onContactClick={() => setActivePage('contact')} />
-          </div>
-        </section>
-      </div>
 
       {/* ========================================================
           7. WHY RELATIONSHIPS MATTER

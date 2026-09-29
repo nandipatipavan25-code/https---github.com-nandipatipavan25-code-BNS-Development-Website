@@ -1,3 +1,6 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@200..800&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&family=Syncopate:wght@400;700&family=Syne:wght@500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -110,11 +113,143 @@ h1, h2, .font-heading, .font-display {
   font-weight: 600;
 }
 
-/* Subheadings, sub-text, and body text use Manrope */
+/* Subheadings, sub-text, and body text default */
 h3, h4, .font-subheading, .font-manrope {
-  font-family: 'Manrope', sans-serif !important;
+  font-family: 'Manrope', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+/* ==========================================================================
+   ABOUT US PAGE - 3 EXCLUSIVE SERIF FONT PRESET COMBINATIONS
+   Zero Manrope. Pure Architectural Luxury.
+   ========================================================================== */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   OPTION 1: ARCHITECTURAL MONOGRAPH
+   Display / Headings: GT Super Display & Playfair Display (Serif)
+   Body / Subheadings / Paragraphs: Satoshi (Fontshare Geometric Sans)
+   Data / Monospace / Tags: Space Mono
+   ────────────────────────────────────────────────────────────────────────── */
+.font-preset-1 {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Headings / Display: Serif (No All-Caps) */
+.font-preset-1 h1,
+.font-preset-1 h2,
+.font-preset-1 h3.font-display,
+.font-preset-1 h4.font-display,
+.font-preset-1 h5.font-display,
+.font-preset-1 .font-display,
+.font-preset-1 .font-heading,
+.font-preset-1 .font-display *,
+.font-preset-1 .font-heading * {
+  font-family: 'GT Super', 'Playfair Display', Georgia, serif !important;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  text-transform: none !important;
+}
+
+/* Monospace / Tags / Stats */
+.font-preset-1 .font-mono,
+.font-preset-1 .font-mono * {
+  font-family: 'Space Mono', 'Roboto Mono', monospace !important;
+}
+
+/* Body / Subheadings / Regular Text: Satoshi (NO Manrope) */
+.font-preset-1 p:not(.font-display),
+.font-preset-1 .font-sans,
+.font-preset-1 .font-subheading,
+.font-preset-1 .font-manrope,
+.font-preset-1 li,
+.font-preset-1 a:not(.font-mono):not(.font-display) {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   OPTION 2: BESPOKE HERITAGE & EDITORIAL
+   Display / Headings: Cormorant Garamond (Editorial Luxury Serif)
+   Body / Subheadings / Paragraphs: Spectral (Parisian Stylish Serif Body)
+   Data / Monospace / Tags: IBM Plex Mono
+   ────────────────────────────────────────────────────────────────────────── */
+.font-preset-2 {
+  font-family: 'Spectral', Georgia, serif !important;
+}
+
+/* Headings / Display: Cormorant Garamond Serif (No All-Caps) */
+.font-preset-2 h1,
+.font-preset-2 h2,
+.font-preset-2 h3.font-display,
+.font-preset-2 h4.font-display,
+.font-preset-2 h5.font-display,
+.font-preset-2 .font-display,
+.font-preset-2 .font-heading,
+.font-preset-2 .font-display *,
+.font-preset-2 .font-heading * {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+/* Monospace / Tags / Stats */
+.font-preset-2 .font-mono,
+.font-preset-2 .font-mono * {
+  font-family: 'IBM Plex Mono', 'Roboto Mono', monospace !important;
+}
+
+/* Body / Subheadings / Regular Text: Spectral (Stylish Serif Body) */
+.font-preset-2 p:not(.font-display),
+.font-preset-2 .font-sans,
+.font-preset-2 .font-subheading,
+.font-preset-2 .font-manrope,
+.font-preset-2 li,
+.font-preset-2 a:not(.font-mono):not(.font-display) {
+  font-family: 'Spectral', Georgia, serif !important;
+  letter-spacing: 0.005em;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   OPTION 3: MONUMENTAL ROMAN
+   Display / Headings: Cinzel (Monumental Travertine Roman Serif)
+   Body / Subheadings / Paragraphs: Plus Jakarta Sans (Contemporary Architectural Sans)
+   Data / Monospace / Tags: DM Mono
+   ────────────────────────────────────────────────────────────────────────── */
+.font-preset-3 {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Headings / Display: Cinzel Roman Serif (No All-Caps) */
+.font-preset-3 h1,
+.font-preset-3 h2,
+.font-preset-3 h3.font-display,
+.font-preset-3 h4.font-display,
+.font-preset-3 h5.font-display,
+.font-preset-3 .font-display,
+.font-preset-3 .font-heading,
+.font-preset-3 .font-display *,
+.font-preset-3 .font-heading * {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: none !important;
+}
+
+/* Monospace / Tags / Stats */
+.font-preset-3 .font-mono,
+.font-preset-3 .font-mono * {
+  font-family: 'DM Mono', 'Roboto Mono', monospace !important;
+}
+
+/* Body / Subheadings / Regular Text: Plus Jakarta Sans (NO Manrope) */
+.font-preset-3 p:not(.font-display),
+.font-preset-3 .font-sans,
+.font-preset-3 .font-subheading,
+.font-preset-3 .font-manrope,
+.font-preset-3 li,
+.font-preset-3 a:not(.font-mono):not(.font-display) {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 /* ==========================================================================

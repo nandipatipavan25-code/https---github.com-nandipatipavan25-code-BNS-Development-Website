@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, ArrowRight, CheckCircle2, Shield, Send } from 'lucide-react';
-import SectionHeading, { ConstructionScaleSVG } from '../components/SectionHeading';
-// import SphericalArcs from '../components/SphericalArcs'; // Hidden for now as requested
+import { Phone, Mail, CheckCircle2 } from 'lucide-react';
+import SectionHeading from '../components/SectionHeading';
 import EyeFollowButton from '../components/EyeFollowButton';
 
 export default function ContactPage() {
@@ -43,106 +41,6 @@ export default function ContactPage() {
         </section>
 
         {/* ========================================================
-            REGIONAL HUBS & DIRECT DESK
-            Three-column balanced executive contact strip
-            ======================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-12 sm:mb-16">
-          {/* Florida Operations */}
-          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl flex flex-col justify-between space-y-4 hover:border-brand-red/40 transition-all duration-300 hover-beam-card">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-brand-red uppercase tracking-widest font-bold">
-                  FLORIDA OPERATIONS
-                </span>
-                <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-neutral-300">
-                  CGC 1505391
-                </span>
-              </div>
-              <h4 className="text-lg font-semibold font-display text-brand-subheading">
-                Miami &amp; South Florida Hub
-              </h4>
-            </div>
-            <div className="space-y-2 text-xs text-brand-body font-mono pt-2 border-t border-white/5">
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-red shrink-0" />
-                <a href="tel:7863683009" className="hover:text-brand-red transition-colors">
-                  (786) 368-3009 (Bradford Smith)
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-brand-red shrink-0" />
-                <a href="mailto:brad@achillesgc.com" className="hover:text-brand-red transition-colors truncate">
-                  brad@achillesgc.com
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Texas Operations */}
-          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl flex flex-col justify-between space-y-4 hover:border-brand-red/40 transition-all duration-300 hover-beam-card">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-brand-red uppercase tracking-widest font-bold">
-                  TEXAS OPERATIONS
-                </span>
-                <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-neutral-300">
-                  CENTRAL TX
-                </span>
-              </div>
-              <h4 className="text-lg font-semibold font-display text-brand-subheading">
-                Austin &amp; Hill Country Hub
-              </h4>
-            </div>
-            <div className="space-y-2 text-xs text-brand-body font-mono pt-2 border-t border-white/5">
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-red shrink-0" />
-                <a href="tel:9044797977" className="hover:text-brand-red transition-colors">
-                  (904) 479-7977 (Aravind Vangala)
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-brand-red shrink-0" />
-                <a href="mailto:contact@bnsdevelopment.com" className="hover:text-brand-red transition-colors truncate">
-                  contact@bnsdevelopment.com
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Executive Direct Desk */}
-          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl flex flex-col justify-between space-y-4 hover:border-brand-red/40 transition-all duration-300 hover-beam-card">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-brand-red uppercase tracking-widest font-bold">
-                  EXECUTIVE DESK
-                </span>
-                <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-brand-red/10 border border-brand-red/30 text-brand-red font-bold">
-                  24H RESPONSE
-                </span>
-              </div>
-              <h4 className="text-lg font-semibold font-display text-brand-subheading">
-                Direct Managing Partner
-              </h4>
-            </div>
-            <div className="space-y-2 text-xs text-brand-body font-mono pt-2 border-t border-white/5">
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-brand-red shrink-0" />
-                <a href="tel:7863683009" className="hover:text-brand-red transition-colors">
-                  (786) 368-3009 (Direct Line)
-                </a>
-              </div>
-              <div className="flex items-center justify-between pt-0.5">
-                <span className="flex items-center gap-1.5 text-[11px] text-neutral-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span>PARTNER DESK: ACTIVE</span>
-                </span>
-                <span className="text-[10px] text-neutral-500">AUSTIN • DALLAS • MIAMI</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ========================================================
             PROJECT INITIATION BRIEF FORM
             Centered, full-featured executive form
             ======================================================== */}
@@ -169,11 +67,26 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                  <div className="flex items-center justify-between pb-3 border-b border-white/10 flex-wrap gap-2">
                     <span className="font-mono text-xs uppercase tracking-widest text-white font-bold">
                       PROJECT INITIATION BRIEF
                     </span>
-                    <span className="text-[10px] font-mono text-neutral-400">DIRECT EXECUTIVE DESK</span>
+                    <div className="flex items-center gap-4 text-[11px] font-mono text-neutral-400">
+                      <a
+                        href="tel:7863683009"
+                        className="hover:text-brand-red transition-colors flex items-center gap-1.5"
+                      >
+                        <Phone className="w-3 h-3 text-brand-red" />
+                        <span>(786) 368-3009</span>
+                      </a>
+                      <a
+                        href="mailto:contact@bns-development.com"
+                        className="hover:text-brand-red transition-colors flex items-center gap-1.5"
+                      >
+                        <Mail className="w-3 h-3 text-brand-red" />
+                        <span>contact@bns-development.com</span>
+                      </a>
+                    </div>
                   </div>
 
                   {/* Row 1: Name & Company */}

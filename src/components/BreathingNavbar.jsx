@@ -6,6 +6,7 @@ import { ConstructionScaleSVG } from './SectionHeading';
 export default function BreathingNavbar({ activePage, setActivePage }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +18,9 @@ export default function BreathingNavbar({ activePage, setActivePage }) {
 
   const navItems = [
     { id: 'home', label: 'Home', hasLink: true },
-    { id: 'about', label: 'About Us', hasLink: true },
+    { id: 'about-1', label: 'About us -1', hasLink: true },
+    { id: 'about-2', label: 'About us -2', hasLink: true },
+    { id: 'about-3', label: 'About us -3', hasLink: true },
     { id: 'services', label: 'Services', hasLink: true },
     { id: 'work', label: 'Work', hasLink: true },
     { id: 'careers', label: 'Careers', hasLink: true },
@@ -53,7 +56,7 @@ export default function BreathingNavbar({ activePage, setActivePage }) {
                   src="/logos/BNS LOGO-01.svg"
                   alt="BNS DEVELOPMENT"
                   className={`transition-all duration-500 w-auto object-contain ${
-                    isScrolled ? 'h-[38px] md:h-[44px]' : 'h-[46px] md:h-[54px]'
+                    isScrolled ? 'h-[36px] md:h-[42px]' : 'h-[42px] md:h-[50px]'
                   }`}
                 />
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-red transition-all duration-300 group-hover:w-full" />
@@ -62,30 +65,131 @@ export default function BreathingNavbar({ activePage, setActivePage }) {
 
             {/* Desktop Navigation Floating Pill with Frosted Glass */}
             <nav className="hidden lg:flex items-center">
-              <div className="flex items-center px-2.5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-2xl shadow-xl shadow-black/25">
+              <div className="flex items-center px-2 py-1 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-2xl shadow-xl shadow-black/25">
                 {navItems.map((item) => {
-                  const isActive = activePage === item.id;
+                  const isServices = item.id === 'services';
+                  const isItemActive =
+                    activePage === item.id ||
+                    (item.id === 'about-1' && activePage === 'about') ||
+                    (isServices && (activePage === 'design-build' || activePage === 'predevelopment' || activePage === 'preconstruction' || activePage === 'residential'));
+
                   if (!item.hasLink) {
                     return (
                       <span
                         key={item.id}
-                        className="relative px-3 xl:px-3.5 py-1.5 text-xs xl:text-sm font-semibold tracking-wide uppercase text-white/40 select-none cursor-default"
+                        className="relative px-2 xl:px-2.5 py-1 text-[10px] xl:text-xs font-semibold tracking-wide uppercase text-white/40 select-none cursor-default"
                       >
                         {item.label}
                       </span>
                     );
                   }
+
+                  if (isServices) {
+                    return (
+                      <div
+                        key={item.id}
+                        className="relative"
+                        onMouseEnter={() => setServicesMenuOpen(true)}
+                        onMouseLeave={() => setServicesMenuOpen(false)}
+                      >
+                        <button
+                          onClick={() => handleNavClick(item.id)}
+                          className={`relative px-2 xl:px-2.5 py-1.5 text-[10px] xl:text-xs font-semibold tracking-wide uppercase transition-all duration-300 rounded-full focus:outline-none cursor-pointer border ${
+                            isItemActive
+                              ? 'text-brand-heading border-white/10'
+                              : 'text-white/60 hover:text-white border-transparent hover:border-brand-red/30 hover:bg-brand-red/[0.08] hover:shadow-[0_0_16px_rgba(215,25,32,0.22)]'
+                          }`}
+                        >
+                          {isItemActive && (
+                            <motion.span
+                              layoutId="activeNavTab"
+                              className="absolute inset-0 bg-white/[0.08] border border-white/10 rounded-full shadow-inner"
+                              transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                            />
+                          )}
+                          <span className="relative z-10 flex items-center gap-1.5">
+                            {item.label}
+                            {isItemActive && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-red shadow-[0_0_6px_#D71920] animate-pulse" />
+                            )}
+                          </span>
+                        </button>
+
+                        <AnimatePresence>
+                          {servicesMenuOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                              transition={{ duration: 0.18 }}
+                              className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 p-2 rounded-2xl bg-[#07080A]/95 backdrop-blur-2xl border border-white/15 shadow-2xl space-y-1 z-50 text-left"
+                            >
+                              <button
+                                onClick={() => {
+                                  handleNavClick('services');
+                                  setServicesMenuOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-mono uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                                  activePage === 'services' ? 'bg-brand-red text-white font-bold' : 'text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                                }`}
+                              >
+                                <span>All Services</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-brand-red" />
+                              </button>
+                              <button
+                                onClick={() => {
+                                  handleNavClick('design-build');
+                                  setServicesMenuOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-mono uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                                  activePage === 'design-build' ? 'bg-brand-red text-white font-bold' : 'text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                                }`}
+                              >
+                                <span>Design-Build</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-brand-red" />
+                              </button>
+                              <button
+                                onClick={() => {
+                                  handleNavClick('predevelopment');
+                                  setServicesMenuOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-mono uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                                  (activePage === 'predevelopment' || activePage === 'preconstruction') ? 'bg-brand-red text-white font-bold' : 'text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                                }`}
+                              >
+                                <span>Pre Development Services</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-brand-red" />
+                              </button>
+                              <button
+                                onClick={() => {
+                                  handleNavClick('residential');
+                                  setServicesMenuOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-mono uppercase tracking-wider transition-colors flex items-center justify-between cursor-pointer ${
+                                  activePage === 'residential' ? 'bg-brand-red text-white font-bold' : 'text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                                }`}
+                              >
+                                <span>Residential Services</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-brand-red" />
+                              </button>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
                   return (
                     <button
                       key={item.id}
                       onClick={() => handleNavClick(item.id)}
-                      className={`relative px-3.5 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold tracking-wide uppercase transition-all duration-300 rounded-full focus:outline-none cursor-pointer border ${
-                        isActive
+                      className={`relative px-2 xl:px-2.5 py-1.5 text-[10px] xl:text-xs font-semibold tracking-wide uppercase transition-all duration-300 rounded-full focus:outline-none cursor-pointer border ${
+                        isItemActive
                           ? 'text-brand-heading border-white/10'
                           : 'text-white/60 hover:text-white border-transparent hover:border-brand-red/30 hover:bg-brand-red/[0.08] hover:shadow-[0_0_16px_rgba(215,25,32,0.22)]'
                       }`}
                     >
-                      {isActive && (
+                      {isItemActive && (
                         <motion.span
                           layoutId="activeNavTab"
                           className="absolute inset-0 bg-white/[0.08] border border-white/10 rounded-full shadow-inner"
@@ -94,7 +198,7 @@ export default function BreathingNavbar({ activePage, setActivePage }) {
                       )}
                       <span className="relative z-10 flex items-center gap-1.5">
                         {item.label}
-                        {isActive && (
+                        {isItemActive && (
                           <span className="w-1.5 h-1.5 rounded-full bg-brand-red shadow-[0_0_6px_#D71920] animate-pulse" />
                         )}
                       </span>
@@ -147,22 +251,58 @@ export default function BreathingNavbar({ activePage, setActivePage }) {
                   );
                 }
                 return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`w-full flex items-center justify-between p-3.5 rounded-xl text-base font-bold tracking-wide uppercase transition-all duration-300 border ${
-                      isActive
-                        ? 'bg-white/[0.08] text-brand-heading border-brand-red/40 shadow-[0_0_16px_rgba(215,25,32,0.2)]'
-                        : 'text-white/60 hover:text-white border-transparent hover:border-brand-red/30 hover:bg-brand-red/[0.08] hover:shadow-[0_0_16px_rgba(215,25,32,0.2)]'
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {isActive ? (
-                      <span className="w-2 h-2 rounded-full bg-brand-red shadow-[0_0_8px_#D71920] animate-pulse" />
-                    ) : (
-                      <ArrowUpRight className="w-4 h-4 text-white/40" />
+                  <div key={item.id} className="space-y-1">
+                    <button
+                      onClick={() => handleNavClick(item.id)}
+                      className={`w-full flex items-center justify-between p-3.5 rounded-xl text-base font-bold tracking-wide uppercase transition-all duration-300 border ${
+                        isActive
+                          ? 'bg-white/[0.08] text-brand-heading border-brand-red/40 shadow-[0_0_16px_rgba(215,25,32,0.2)]'
+                          : 'text-white/60 hover:text-white border-transparent hover:border-brand-red/30 hover:bg-brand-red/[0.08] hover:shadow-[0_0_16px_rgba(215,25,32,0.2)]'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {isActive ? (
+                        <span className="w-2 h-2 rounded-full bg-brand-red shadow-[0_0_8px_#D71920] animate-pulse" />
+                      ) : (
+                        <ArrowUpRight className="w-4 h-4 text-white/40" />
+                      )}
+                    </button>
+
+                    {item.id === 'services' && (
+                      <div className="pl-4 pr-1 py-1 space-y-1">
+                        <button
+                          onClick={() => handleNavClick('design-build')}
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors ${
+                            activePage === 'design-build'
+                              ? 'bg-brand-red text-white font-bold'
+                              : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
+                          }`}
+                        >
+                          <span>→ Design-Build Services</span>
+                        </button>
+                        <button
+                          onClick={() => handleNavClick('predevelopment')}
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors ${
+                            activePage === 'predevelopment' || activePage === 'preconstruction'
+                              ? 'bg-brand-red text-white font-bold'
+                              : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
+                          }`}
+                        >
+                          <span>→ Pre Development Services</span>
+                        </button>
+                        <button
+                          onClick={() => handleNavClick('residential')}
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors ${
+                            activePage === 'residential'
+                              ? 'bg-brand-red text-white font-bold'
+                              : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
+                          }`}
+                        >
+                          <span>→ Residential Services</span>
+                        </button>
+                      </div>
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>

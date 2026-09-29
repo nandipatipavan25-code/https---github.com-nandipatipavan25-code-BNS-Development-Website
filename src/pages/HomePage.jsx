@@ -19,9 +19,9 @@ import { projectsData } from '../data/projects';
 // 5 Dedicated Services matching exact user specification (informative display without links)
 const HOME_SERVICES = [
   {
-    id: 'preconstruction',
-    title: 'Preconstruction Services',
-    desc: 'Start with a clearer understanding of your project. Our preconstruction approach focuses on early planning, scope coordination, scheduling, project requirements and the decisions that need to be addressed before construction begins.',
+    id: 'predevelopment',
+    title: 'Pre Development Services',
+    desc: 'Start with a clearer understanding of your project. Our Pre Development approach focuses on early planning, scope coordination, scheduling, project requirements and the decisions that need to be addressed before construction begins.',
     image: '/images/preconstruction.jpg',
     icon: Compass,
   },
@@ -289,8 +289,8 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
 
               {/* Headline: Built on Experience. Driven by Partnership. */}
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[50px] font-display font-semibold text-brand-heading tracking-tight leading-tight lg:leading-[50px]">
-                BUILT ON EXPERIENCE.<br />
-                <span className="text-brand-red">DRIVEN BY PARTNERSHIP.</span>
+                Built on Experience.<br />
+                <span className="text-brand-red">Driven by Partnership.</span>
               </h1>
 
               {/* Subtitle with typing animation effect on load */}
@@ -446,9 +446,27 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-500 uppercase tracking-wider">
-                      <span>CORE DISCIPLINE</span>
-                      <span className="text-brand-red font-semibold">BNS SCOPE</span>
+                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                      {(svc.id === 'design-build' || svc.id === 'predevelopment' || svc.id === 'preconstruction' || svc.id === 'residential-services' || svc.id === 'residential') ? (
+                        <button
+                          onClick={() => {
+                            if (svc.id === 'residential-services') setActivePage('residential');
+                            else if (svc.id === 'preconstruction') setActivePage('predevelopment');
+                            else setActivePage(svc.id);
+                          }}
+                          className="flex items-center justify-between w-full text-brand-subheading hover:text-brand-red transition-colors group cursor-pointer"
+                        >
+                          <span className="text-[11px] uppercase tracking-wider text-neutral-400 group-hover:text-white">Detailed Discipline</span>
+                          <span className="text-brand-red font-semibold flex items-center gap-1 text-[11px] uppercase tracking-wider">
+                            Explore Discipline →
+                          </span>
+                        </button>
+                      ) : (
+                        <>
+                          <span className="text-neutral-500 uppercase tracking-wider text-xs">CORE DISCIPLINE</span>
+                          <span className="text-brand-red font-semibold text-xs">BNS SCOPE</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </ScrollReveal>
@@ -478,10 +496,10 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-[#E6E6E6] tracking-[0.03em] uppercase leading-[1.15]">
-                  EXPERIENCE THAT GOES
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold text-[#E6E6E6] tracking-tight leading-[1.15]">
+                  Experience That Goes
                   <br />
-                  BEYOND ONE TYPE OF <span className="text-brand-red">PROJECT</span>
+                  Beyond One Type of <span className="text-brand-red">Project</span>
                 </h2>
               </div>
 
@@ -682,7 +700,8 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
                   <img
                     src={person.image}
                     alt={person.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 opacity-90"
+                    style={{ objectPosition: 'top center' }}
                     loading="lazy"
                   />
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[9px] font-mono font-bold text-brand-red uppercase">

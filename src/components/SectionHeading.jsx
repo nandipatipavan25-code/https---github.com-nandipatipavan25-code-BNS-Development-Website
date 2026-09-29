@@ -46,9 +46,9 @@ export default function SectionHeading({
         <span className="font-semibold text-brand-subheading tracking-wider">{cleanTag}</span>
       </motion.div>
 
-      {/* Main Title - Matches the "modern alphabet ARCHITEC" reference */}
+      {/* Main Title */}
       <h2
-        className={`text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-[0.03em] uppercase leading-[1.15] text-brand-heading ${
+        className={`text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-tight leading-[1.15] text-brand-heading ${
           centered ? 'text-center' : ''
         } ${titleClassName}`}
       >

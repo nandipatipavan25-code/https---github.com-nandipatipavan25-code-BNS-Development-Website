@@ -37,7 +37,7 @@ export default function LegalModal({ type, onClose }) {
           <div className="flex items-center justify-between pb-4 border-b border-brand-border text-brand-heading">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-brand-red" />
-              <h3 className="font-display font-semibold text-xl tracking-wider uppercase text-brand-heading">
+              <h3 className="font-display font-semibold text-xl tracking-tight text-brand-heading">
                 {isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}
               </h3>
             </div>
@@ -58,15 +58,15 @@ export default function LegalModal({ type, onClose }) {
               <p>
                 BNS Development LLC respects your privacy. This policy outlines how information is gathered through project inquiries, subcontractor prequalification forms, and career applications.
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">1. Information Collection</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">1. Information Collection</h4>
               <p>
                 We only collect information voluntarily submitted by developers, clients, trade partners, and applicants (such as name, email address, corporate entity, project specifications, and bidding documentation).
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">2. Use of Information</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">2. Use of Information</h4>
               <p>
                 Data submitted via our website is strictly utilized to evaluate construction feasibility, respond to RFPs, establish trade subcontract agreements, and process employment opportunities. We never sell or license your information to third-party marketing entities.
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">3. Security</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">3. Security</h4>
               <p>
                 All data transmission is encrypted via SSL/TLS protocol conforming to commercial enterprise standards.
               </p>
@@ -76,15 +76,15 @@ export default function LegalModal({ type, onClose }) {
               <p>
                 Welcome to the BNS Development digital portal. By accessing or using this website, you agree to comply with and be bound by the following terms.
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">1. Professional Licensure & Scope</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">1. Professional Licensure & Scope</h4>
               <p>
                 General contracting services are executed under Florida Certified General Contractor License No. CGC 1505391 and corresponding municipal Texas contractor registrations.
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">2. Intellectual Property</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">2. Intellectual Property</h4>
               <p>
                 All architectural renderings, brand logos, custom photography, project data, and website source designs are the proprietary assets of BNS Development LLC.
               </p>
-              <h4 className="text-brand-subheading font-semibold font-display uppercase">3. Project Estimates & Disclaimer</h4>
+              <h4 className="text-brand-subheading font-semibold font-display">3. Project Estimates & Disclaimer</h4>
               <p>
                 Information provided on this website represents past performance and capabilities. Official construction pricing and contract parameters are exclusively established through executed Guaranteed Maximum Price (GMP) or lump-sum contracts.
               </p>

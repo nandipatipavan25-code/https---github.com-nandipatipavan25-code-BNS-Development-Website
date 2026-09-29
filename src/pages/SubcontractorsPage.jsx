@@ -261,7 +261,7 @@ export default function SubcontractorsPage({ setActivePage }) {
                 </div>
 
                 {/* Main Heading: Our Subcontractors in GT Super font */}
-                <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading uppercase tracking-[0.03em] leading-[1.12]">
+                <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-display font-semibold text-brand-heading tracking-tight leading-[1.12]">
                   Our <span className="text-brand-red">Subcontractors</span>
                 </h1>
 
@@ -361,7 +361,7 @@ export default function SubcontractorsPage({ setActivePage }) {
         {filteredSubcontractors.length === 0 ? (
           <div className="py-20 text-center rounded-3xl bg-white/[0.02] border border-white/10 p-8 space-y-4">
             <HardHat className="w-12 h-12 text-brand-red/50 mx-auto" />
-            <h3 className="text-xl font-semibold font-display text-brand-heading uppercase">
+            <h3 className="text-xl font-semibold font-display text-brand-heading">
               No Trade Partners Found
             </h3>
             <p className="text-sm text-brand-body max-w-md mx-auto font-sans">
@@ -501,7 +501,7 @@ export default function SubcontractorsPage({ setActivePage }) {
                 <ConstructionScaleSVG color="red" size={14} />
                 <span>TRADE ONBOARDING &bull; FLORIDA &amp; TEXAS</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-display font-semibold text-brand-heading uppercase leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-display font-semibold text-brand-heading leading-tight">
                 Want to Join the BNS Trade Network?
               </h3>
               <p className="text-sm text-[#A8A8A0] font-sans leading-relaxed">

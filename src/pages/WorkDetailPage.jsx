@@ -120,7 +120,7 @@ export default function WorkDetailPage({
                     )}
                   </div>
 
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-[0.035em] text-brand-heading uppercase leading-[1.12]">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-display font-semibold tracking-tight text-brand-heading leading-[1.12]">
                     {activeProj.title}
                   </h1>
 

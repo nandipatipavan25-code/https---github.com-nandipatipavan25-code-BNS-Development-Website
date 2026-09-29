@@ -15,13 +15,27 @@ import CareersPage from './pages/CareersPage';
 import SubcontractorsPage from './pages/SubcontractorsPage';
 import ContactPage from './pages/ContactPage';
 import CareerDetailPage from './pages/CareerDetailPage';
+import DesignBuildPage from './pages/DesignBuildPage';
+import PreconstructionPage from './pages/PreconstructionPage';
+import ResidentialPage from './pages/ResidentialPage';
 
 export default function App() {
   const getInitialPage = () => {
     if (typeof window === 'undefined') return 'home';
     const hash = window.location.hash.toLowerCase().replace('#', '');
     if (hash) {
-      if (hash.includes('about')) return 'about';
+      if (hash.includes('residential')) return 'residential';
+      if (hash.includes('design-build')) return 'design-build';
+      if (hash.includes('predevelopment') || hash.includes('preconstruction')) {
+        if (hash.includes('preconstruction') && typeof window !== 'undefined') {
+          window.history.replaceState({ page: 'predevelopment' }, '', '#predevelopment');
+        }
+        return 'predevelopment';
+      }
+      if (hash.includes('about-1')) return 'about-1';
+      if (hash.includes('about-2')) return 'about-2';
+      if (hash.includes('about-3')) return 'about-3';
+      if (hash.includes('about')) return 'about-1';
       if (hash.includes('contact')) return 'contact';
       if (hash.includes('services')) return 'services';
       if (hash.includes('work-detail')) return 'work-detail';
@@ -32,7 +46,13 @@ export default function App() {
       if (hash.includes('home')) return 'home';
     }
     const path = window.location.pathname.toLowerCase();
-    if (path.includes('about')) return 'about';
+    if (path.includes('residential')) return 'residential';
+    if (path.includes('design-build')) return 'design-build';
+    if (path.includes('predevelopment') || path.includes('preconstruction')) return 'predevelopment';
+    if (path.includes('about-1')) return 'about-1';
+    if (path.includes('about-2')) return 'about-2';
+    if (path.includes('about-3')) return 'about-3';
+    if (path.includes('about')) return 'about-1';
     if (path.includes('contact')) return 'contact';
     if (path.includes('services-portfolio') || path.includes('services')) return 'services';
     if (path.includes('work-detail')) return 'work-detail';
@@ -50,20 +70,25 @@ export default function App() {
 
   // Sync window scroll and browser history on page change
   const handlePageChange = (page, extraQuery = '') => {
-    setActivePage(page);
+    const canonicalPage = page === 'preconstruction' ? 'predevelopment' : page;
+    setActivePage(canonicalPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const isSinglePage =
       window.location.protocol === 'file:' ||
       window.location.pathname.endsWith('index.html') ||
       window.location.pathname === '/' ||
-      !window.location.pathname.includes('.html');
+      !window.location.pathname.includes('.html') ||
+      canonicalPage.startsWith('about') ||
+      canonicalPage === 'design-build' ||
+      canonicalPage === 'predevelopment' ||
+      canonicalPage === 'residential';
 
     const targetUrl = isSinglePage
-      ? `#${page}${extraQuery ? `?${extraQuery}` : ''}`
-      : `/${page}.html${extraQuery ? `?${extraQuery}` : ''}`;
+      ? `#${canonicalPage}${extraQuery ? `?${extraQuery}` : ''}`
+      : `/${canonicalPage}.html${extraQuery ? `?${extraQuery}` : ''}`;
 
     if (window.location.hash !== targetUrl && window.location.pathname !== targetUrl) {
-      window.history.pushState({ page }, '', targetUrl);
+      window.history.pushState({ page: canonicalPage }, '', targetUrl);
     }
   };
 
@@ -104,7 +129,23 @@ export default function App() {
   const renderActivePage = () => {
     switch (activePage) {
       case 'about':
-        return <AboutPage setActivePage={handlePageChange} />;
+      case 'about-1':
+        return <AboutPage setActivePage={handlePageChange} fontPreset={1} />;
+      case 'about-2':
+        return <AboutPage setActivePage={handlePageChange} fontPreset={2} />;
+      case 'about-3':
+        return <AboutPage setActivePage={handlePageChange} fontPreset={3} />;
+      case 'design-build':
+      case 'service-design-build':
+        return <DesignBuildPage setActivePage={handlePageChange} />;
+      case 'preconstruction':
+      case 'predevelopment':
+      case 'service-preconstruction':
+        return <PreconstructionPage setActivePage={handlePageChange} />;
+      case 'residential':
+      case 'service-residential':
+      case 'residential-services':
+        return <ResidentialPage setActivePage={handlePageChange} />;
       case 'services':
         return (
           <ServicesPage

@@ -1,13 +1,13 @@
 export const servicesData = [
   {
-    id: "preconstruction",
+    id: "predevelopment",
     number: "01",
-    title: "Preconstruction Services",
+    title: "Pre Development Services",
     subtitle: "Precision Planning Before Ground Is Broken",
     shortDesc: "Transforming design intent into realistic budgets, tight schedules, and constructable blueprints through proactive risk mitigation and value engineering.",
     icon: "Compass",
     heroImage: "/images/preconstruction.jpg",
-    overview: "At BNS Development, preconstruction is not an administrative check-the-box exercise; it is the single most critical phase defining project success. Our senior leadership directly engages during conceptual development to analyze constructability, challenge assumptions, and secure long-lead procurement paths before capital is committed.",
+    overview: "At BNS Development, Pre Development is not an administrative check-the-box exercise; it is the single most critical phase defining project success. Our senior leadership directly engages during conceptual development to analyze constructability, challenge assumptions, and secure long-lead procurement paths before capital is committed.",
     subdisciplines: [
       {
         name: "Feasibility & Cost Modeling",

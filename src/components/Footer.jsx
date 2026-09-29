@@ -126,11 +126,11 @@ export default function Footer({ setActivePage }) {
                   <h4 className="text-xs font-mono tracking-widest text-brand-red uppercase font-semibold">SERVICES</h4>
                 </div>
                 <ul className="space-y-2.5 text-sm text-brand-body">
-                  <li className="cursor-default select-none">Preconstruction</li>
-                  <li className="cursor-default select-none">Design-Build Delivery</li>
-                  <li className="cursor-default select-none">Residential Development</li>
-                  <li className="cursor-default select-none">Tenant Improvements</li>
-                  <li className="cursor-default select-none">Ground Up Construction</li>
+                  <li><button onClick={() => handleNav('predevelopment')} className="hover:text-brand-heading transition-colors cursor-pointer text-left">Pre Development Services</button></li>
+                  <li><button onClick={() => handleNav('design-build')} className="hover:text-brand-heading transition-colors cursor-pointer text-left">Design-Build Delivery</button></li>
+                  <li><button onClick={() => handleNav('residential')} className="hover:text-brand-heading transition-colors cursor-pointer text-left">Residential Development</button></li>
+                  <li className="cursor-default select-none text-white/50">Tenant Improvements</li>
+                  <li className="cursor-default select-none text-white/50">Ground Up Construction</li>
                 </ul>
               </div>
 
@@ -147,7 +147,7 @@ export default function Footer({ setActivePage }) {
                   </li>
                   <li className="flex items-center gap-2 font-mono">
                     <Mail className="w-3.5 h-3.5 text-brand-red shrink-0" />
-                    <a href="mailto:brad@achillesgc.com" className="hover:text-brand-heading transition-colors truncate">brad@achillesgc.com</a>
+                    <a href="mailto:contact@bns-development.com" className="hover:text-brand-heading transition-colors truncate">contact@bns-development.com</a>
                   </li>
                   <li className="pt-1 border-t border-white/10" />
                   <li>

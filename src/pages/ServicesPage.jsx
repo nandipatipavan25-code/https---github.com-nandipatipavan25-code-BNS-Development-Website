@@ -33,7 +33,7 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
   // Categories for filter tabs
   const categories = [
     { id: 'all', label: 'All Disciplines' },
-    { id: 'preconstruction', label: 'Preconstruction' },
+    { id: 'predevelopment', label: 'Pre Development Services' },
     { id: 'design-build', label: 'Design-Build' },
     { id: 'residential', label: 'Residential' },
     { id: 'tenant-improvements', label: 'Commercial' },
@@ -50,7 +50,7 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
     },
     {
       step: '02',
-      phase: 'PRECONSTRUCTION & GMP',
+      phase: 'PRE DEVELOPMENT & GMP',
       title: 'GMP Formulation & Buyout Strategy',
       desc: 'Comprehensive trade scope packaging, Primavera P6 baseline scheduling, value engineering, and establishing a Guaranteed Maximum Price.',
     },
@@ -136,7 +136,7 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
                 <span>COMPREHENSIVE SERVICES CATALOGUE</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[42px] font-display font-semibold tracking-tight uppercase leading-tight sm:leading-snug md:leading-normal lg:leading-[42px] text-brand-heading">
+              <h1 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[42px] font-display font-semibold tracking-tight leading-tight sm:leading-snug md:leading-normal lg:leading-[42px] text-brand-heading">
                 Precision Disciplines.<br />
                 <span className="text-brand-red">
                   Built for Complexity.
@@ -145,7 +145,7 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
 
               <div className="pt-2 max-w-2xl">
                 <ScrollWordReveal
-                  text="From early feasibility and preconstruction cost modeling through complex ground-up superstructures and commercial tenant improvements, BNS Development brings single-source accountability and experienced builder leadership to every project."
+                  text="From early feasibility and Pre Development cost modeling through complex ground-up superstructures and commercial tenant improvements, BNS Development brings single-source accountability and experienced builder leadership to every project."
                   colorRevealed="#A8A8A0"
                   colorHidden="rgba(168, 168, 160, 0.25)"
                   className="text-sm sm:text-base text-brand-subtext font-sans leading-relaxed"
@@ -353,6 +353,19 @@ export default function ServicesPage({ setActivePage, setSelectedService }) {
                                 </div>
                               ))}
                             </div>
+
+                            {/* Detailed Service Page Link */}
+                            {(svc.id === 'design-build' || svc.id === 'predevelopment' || svc.id === 'preconstruction' || svc.id === 'residential') && (
+                              <div className="pt-4 flex justify-end">
+                                <button
+                                  onClick={() => setActivePage(svc.id === 'preconstruction' ? 'predevelopment' : svc.id)}
+                                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.04] hover:bg-brand-red/15 border border-white/10 hover:border-brand-red/40 text-xs font-mono text-white transition-all cursor-pointer group shadow-lg"
+                                >
+                                  <span>View Detailed Service Page</span>
+                                  <ArrowRight className="w-3.5 h-3.5 text-brand-red group-hover:translate-x-1 transition-transform" />
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
