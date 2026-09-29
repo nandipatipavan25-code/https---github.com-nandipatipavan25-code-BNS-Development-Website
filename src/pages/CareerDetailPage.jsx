@@ -457,9 +457,11 @@ export default function CareerDetailPage({
                   key={oj.id}
                   onClick={() => {
                     if (setSelectedJob) setSelectedJob(oj);
-                    const targetUrl = `/career-detail.html?id=${oj.id}`;
-                    window.history.pushState({ page: 'career-detail', id: oj.id }, '', targetUrl);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (setActivePage) {
+                      setActivePage('career-detail', `id=${oj.id}`);
+                    } else {
+                      window.location.hash = `#career-detail?id=${oj.id}`;
+                    }
                   }}
                   className="p-6 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-brand-red/50 transition-all duration-300 backdrop-blur-xl shadow-xl cursor-pointer group hover:-translate-y-1 flex flex-col justify-between"
                 >

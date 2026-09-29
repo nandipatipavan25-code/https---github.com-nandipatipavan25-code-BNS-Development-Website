@@ -396,7 +396,7 @@ export default function ResidentialPage({ setActivePage }) {
               playsInline
               webkit-playsinline="true"
               disablePictureInPicture
-              className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-1000 ease-out scale-105 group-hover:scale-110 opacity-60 group-hover:opacity-75"
+              className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-1000 ease-out scale-105 group-hover:scale-110 opacity-90 group-hover:opacity-100"
               onEnded={(e) => {
                 e.currentTarget.currentTime = 0;
                 e.currentTarget.play().catch(() => {});
@@ -404,13 +404,13 @@ export default function ResidentialPage({ setActivePage }) {
             >
               <source src="/videos/cta-bg.mp4" type="video/mp4" />
             </video>
-            {/* Cinematic dark gradient vignette overlays for contrast and brand styling */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07080A]/90 via-[#07080A]/60 to-[#07080A]/85 pointer-events-none" />
+            {/* Soft, balanced vignette to let video show through with high clarity */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07080A]/50 via-[#07080A]/20 to-[#07080A]/40 pointer-events-none" />
             <div className="absolute inset-0 bg-radial-gradient from-brand-red/15 via-transparent to-transparent pointer-events-none" />
           </div>
 
           <div className="max-w-2xl mx-auto space-y-5 relative z-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
               <span className="text-white">Planning a</span>{' '}
               <span className="text-brand-red">Residential Project?</span>
             </h2>

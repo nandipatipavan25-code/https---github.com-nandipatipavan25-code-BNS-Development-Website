@@ -235,12 +235,7 @@ export default function HomePage({ setActivePage, setSelectedProject, setSelecte
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
-    setActivePage('work-detail');
-    const targetUrl = `/work-detail.html?id=${project.id}`;
-    if (window.location.pathname !== targetUrl) {
-      window.history.pushState({ page: 'work-detail', id: project.id }, '', targetUrl);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setActivePage('work-detail', `id=${project.id}`);
   };
 
   return (

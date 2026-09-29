@@ -23,12 +23,7 @@ export default function CareersPage({ setActivePage, setSelectedJob: setSelected
 
   const handleViewRole = (job) => {
     if (setSelectedJobProp) setSelectedJobProp(job);
-    setActivePage('career-detail');
-    const targetUrl = `/career-detail.html?id=${job.id}`;
-    if (window.location.pathname !== targetUrl) {
-      window.history.pushState({ page: 'career-detail', id: job.id }, '', targetUrl);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setActivePage('career-detail', `id=${job.id}`);
   };
 
   // Application Form State

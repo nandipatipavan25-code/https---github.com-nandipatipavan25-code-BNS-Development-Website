@@ -45,21 +45,6 @@ export default function App() {
       if (hash.includes('subcontractors')) return 'subcontractors';
       if (hash.includes('home')) return 'home';
     }
-    const path = window.location.pathname.toLowerCase();
-    if (path.includes('residential')) return 'residential';
-    if (path.includes('design-build')) return 'design-build';
-    if (path.includes('predevelopment') || path.includes('preconstruction')) return 'predevelopment';
-    if (path.includes('about-1')) return 'about-1';
-    if (path.includes('about-2')) return 'about-2';
-    if (path.includes('about-3')) return 'about-3';
-    if (path.includes('about')) return 'about-1';
-    if (path.includes('contact')) return 'contact';
-    if (path.includes('services-portfolio') || path.includes('services')) return 'services';
-    if (path.includes('work-detail')) return 'work-detail';
-    if (path.includes('work')) return 'work';
-    if (path.includes('career-detail')) return 'career-detail';
-    if (path.includes('careers')) return 'careers';
-    if (path.includes('subcontractors')) return 'subcontractors';
     return 'home';
   };
 
@@ -73,21 +58,9 @@ export default function App() {
     const canonicalPage = page === 'preconstruction' ? 'predevelopment' : page;
     setActivePage(canonicalPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const isSinglePage =
-      window.location.protocol === 'file:' ||
-      window.location.pathname.endsWith('index.html') ||
-      window.location.pathname === '/' ||
-      !window.location.pathname.includes('.html') ||
-      canonicalPage.startsWith('about') ||
-      canonicalPage === 'design-build' ||
-      canonicalPage === 'predevelopment' ||
-      canonicalPage === 'residential';
 
-    const targetUrl = isSinglePage
-      ? `#${canonicalPage}${extraQuery ? `?${extraQuery}` : ''}`
-      : `/${canonicalPage}.html${extraQuery ? `?${extraQuery}` : ''}`;
-
-    if (window.location.hash !== targetUrl && window.location.pathname !== targetUrl) {
+    const targetUrl = `#${canonicalPage}${extraQuery ? `?${extraQuery}` : ''}`;
+    if (window.location.hash !== targetUrl) {
       window.history.pushState({ page: canonicalPage }, '', targetUrl);
     }
   };
@@ -95,13 +68,7 @@ export default function App() {
   // Sync initial URL to #home if opened at root without hash
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      const isSinglePage =
-        window.location.protocol === 'file:' ||
-        window.location.pathname.endsWith('index.html') ||
-        window.location.pathname === '/' ||
-        !window.location.pathname.includes('.html');
-
-      if (isSinglePage && (!window.location.hash || window.location.hash === '#' || window.location.hash === '#/')) {
+      if (!window.location.hash || window.location.hash === '#' || window.location.hash === '#/') {
         window.history.replaceState({ page: 'home' }, '', '#home');
       }
     }
